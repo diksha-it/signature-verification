@@ -1,0 +1,8 @@
+To run application
+Open cmd Prompt for directory signature-verification 
+run below cmd in seperate terminal
+java -jar target/signature-verification-0.0.1 eureka
+java -jar target/signature-verification-0.0.1 service
+
+To run Angular application
+ng serve
