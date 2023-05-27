@@ -39,6 +39,11 @@ public class EventSourceController {
 	public ResponseEntity<EventSource> verifyUserDetails(@RequestBody EventSourceModel eventSourceModel) {
 		return new ResponseEntity<>(eventSourceService.saveEventSourceDetails(eventSourceModel), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/event-status-change", method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<List<EventSource>> verifyUserDetails(@RequestBody List<EventSourceModel> list,@RequestParam String status) {
+		return new ResponseEntity<List<EventSource>>(eventSourceService.changeStatus(list,status), HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/verify-count", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<VerificatioCountModel>> getAllVerifiedDataCount() {

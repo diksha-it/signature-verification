@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.signatureverification.client.main.controller.EventSourceController;
@@ -36,10 +38,26 @@ public class EventSourceService {
 	}
 	
 	public EventSource saveEventSourceDetails(EventSourceModel eventSourceModel) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
 		EventSource eventSource = modelMapper.map(eventSourceModel, EventSource.class);
+		eventSource.setCreatedBy(currentPrincipalName);
+		eventSource.setCreatedOn(new Date());
 		return eventSourceRepository.save(eventSource);
 
 	}
+	
+	public List<EventSource> changeStatus(List<EventSourceModel> listData,String status) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		listData.forEach(i->{
+			eventSourceRepository.updateEventStatus(status,i.getBusinessKey(),
+					currentPrincipalName,new Date());
+		});
+		 
+		return eventSourceRepository.findByStatus("unassigned");
+	}
+	
 	
 	public List<VerificatioCountModel> getAllVerifiedDataCount() {
 		List<EventSource> listData= eventSourceRepository.findAll();

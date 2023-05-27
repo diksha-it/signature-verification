@@ -1,9 +1,10 @@
 package com.signatureverification.client.main.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import com.signatureverification.client.main.entity.UserDetails;
+import com.signatureverification.client.main.entity.SignatureVerificationUser;
 
-public interface UserRepository extends JpaRepository<UserDetails, Long> {
+public interface UserRepository extends JpaRepository<SignatureVerificationUser, Long> {
+
+	SignatureVerificationUser findByUserName(String userName);
 }

@@ -7,18 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
 @Table(name = "userdetails")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class UserDetails {
+public class SignatureVerificationUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -32,4 +23,37 @@ public class UserDetails {
 
 	@Column(name = "userPwd")
 	private String userPwd;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserBuInfo() {
+		return userBuInfo;
+	}
+
+	public void setUserBuInfo(String userBuInfo) {
+		this.userBuInfo = userBuInfo;
+	}
+
+	public String getUserPwd() {
+		return userPwd;
+	}
+
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
+	}
+
 }

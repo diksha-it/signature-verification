@@ -2,15 +2,6 @@ package com.signatureverification.client.main.model;
 
 import javax.validation.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class UserDetailsModel {
 
 	@NotEmpty(message = "user nam is required")
@@ -20,4 +11,29 @@ public class UserDetailsModel {
 
 	@NotEmpty(message = "user nam is required")
 	private String userPwd;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserBuInfo() {
+		return userBuInfo;
+	}
+
+	public void setUserBuInfo(String userBuInfo) {
+		this.userBuInfo = userBuInfo;
+	}
+
+	public String getUserPwd() {
+		return userPwd;
+	}
+
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
+	}
+
 }
