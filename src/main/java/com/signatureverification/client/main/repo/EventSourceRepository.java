@@ -17,7 +17,9 @@ public interface EventSourceRepository extends JpaRepository<EventSource, String
 
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE event_source u set status =:status ,updated_by=:updated_by,updated_on=:updated_on where u.business_key = :business_key", nativeQuery = true)
+	@Query(value = "UPDATE event_source u set status =:status ,updated_by=:updated_by,updated_on=:updated_on,verfied=:verfied,discrepancy_reason=:discrepancy_reason where u.business_key = :business_key", nativeQuery = true)
 	void updateEventStatus(@Param("status") String status, @Param("business_key") String business_key,
-			@Param("updated_by") String updated_by,@Param("updated_on") Date date);
+			@Param("updated_by") String updated_by,@Param("updated_on") Date date
+			,@Param("verfied") String verfied,@Param("discrepancy_reason") String discrepancy_reason);
+	
 }

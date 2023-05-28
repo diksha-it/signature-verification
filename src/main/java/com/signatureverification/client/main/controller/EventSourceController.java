@@ -1,7 +1,6 @@
 package com.signatureverification.client.main.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +29,25 @@ public class EventSourceController {
 	@Autowired
 	private EventSourceService eventSourceService;
 
-	@RequestMapping(value = "/fetch-event", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/fetch-event", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<EventSource>> getEventSourcData(@RequestParam String status) {
 		return new ResponseEntity<>(eventSourceService.getEventSourceDetails(status), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/event-save", method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/event-save", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<EventSource> verifyUserDetails(@RequestBody EventSourceModel eventSourceModel) {
 		return new ResponseEntity<>(eventSourceService.saveEventSourceDetails(eventSourceModel), HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/event-status-change", method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<EventSource>> verifyUserDetails(@RequestBody List<EventSourceModel> list,@RequestParam String status) {
-		return new ResponseEntity<List<EventSource>>(eventSourceService.changeStatus(list,status), HttpStatus.OK);
+
+	@RequestMapping(value = "/event-status-change", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<EventSource>> verifyUserDetails(@RequestBody List<EventSourceModel> list,
+			@RequestParam String status) {
+		return new ResponseEntity<List<EventSource>>(eventSourceService.changeStatus(list, status), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/verify-count", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/verify-count", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<VerificatioCountModel>> getAllVerifiedDataCount() {
 		return new ResponseEntity<>(eventSourceService.getAllVerifiedDataCount(), HttpStatus.OK);
 	}

@@ -3,9 +3,7 @@ package com.signatureverification.client.main.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -15,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.signatureverification.client.main.controller.EventSourceController;
 import com.signatureverification.client.main.entity.EventSource;
 import com.signatureverification.client.main.model.EventSourceModel;
 import com.signatureverification.client.main.model.VerificatioCountModel;
@@ -52,8 +49,9 @@ public class EventSourceService {
 		String currentPrincipalName = authentication.getName();
 		listData.forEach(i->{
 			eventSourceRepository.updateEventStatus(status,i.getBusinessKey(),
-					currentPrincipalName,new Date());
+					currentPrincipalName,new Date(),i.getVerfied(),i.getDiscrepancyReason());
 		});
+		
 		 
 		return eventSourceRepository.findByStatus("unassigned");
 	}

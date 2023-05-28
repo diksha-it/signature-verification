@@ -2,11 +2,6 @@ package com.signatureverification.client.main.model;
 
 import java.sql.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 public class EventSourceModel {
 	private String businessKey;
 
